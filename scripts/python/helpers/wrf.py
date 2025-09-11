@@ -28,6 +28,8 @@ RAW_VARS = (
     "SWDDNI",
     "COSZEN",
     "SWDDIF",
+    "U10",
+    "V10",
 )
 
 DERIVED_VARS = {
@@ -38,6 +40,8 @@ DERIVED_VARS = {
     "rh2": ("T2", "PSFC", "Q2"),
     "ua": ("U"),
     "va": ("V"),
+    "u10": ("U10"),
+    "v10": ("V10"),
     "height_agl": ("P", "PH", "PHB", "HGT"),
     "pressure": ("P", "PB"),
     "u_850hPa": ("ua", "pressure"),

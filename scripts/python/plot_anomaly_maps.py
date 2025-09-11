@@ -78,7 +78,7 @@ def check_dates(date, ds):
     if _percent_complete >= 80:
         _wrf_temp = ds[["temp"]].groupby("time.month").mean("time")
         _wrf_rain = ds[["rain"]].groupby("time.month").sum("time")
-        print(_percent_complete)
+        print(f"Data completeness: {_percent_complete}")
         _mask = xr.open_dataset(f"{resources_dir}/WRF_LANDMASK_PH.nc")
         _wrf_temp = _wrf_temp.assign(
             {
@@ -127,7 +127,13 @@ def plot_anom(save_nc=False, months=6):  ## plot anomalies per month
         print("▮▮▮ Files exist, nothing to plot.....")
 
     for date in _file_date:
-        _anom = read_wrf_out(date)
+        print(f"▮▮▮ Processing {date}...")
+        try:
+            _anom = read_wrf_out(date)
+        except UnboundLocalError:
+            print(f"There was an issue reading the data. Skipping {date}...")
+            continue
+
         print(f"Plotting {date}")
 
         for var in ["rain", "temp"]:
