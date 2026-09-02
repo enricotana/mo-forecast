@@ -62,6 +62,7 @@ echo " Starting WRF Forecast "
 echo "-----------------------"
 
 source "$SCRIPT_DIR/set_date_vars.sh"
+SCRIPTS_LOG_DIR="$LOG_DIR/scripts"
 MODEL_LOG_DIR="$LOG_DIR/model"
 POST_LOG_DIR="$LOG_DIR/post"
 export ERROR_FILE=$TEMP_DIR/error.txt
@@ -99,6 +100,16 @@ if [ ${#GFS_FILES[@]} -ne $NUM_TIMESTEPS ]; then
   echo "$err_msg"
   exit 1
 fi
+
+# Weather Chart
+mkdir -p "$SCRIPTS_LOG_DIR"
+wc_log_file="$SCRIPTS_LOG_DIR/weatherchart_$FCST_YYYYMMDD$FCST_ZZ.out"
+slurm_opts=("${SLURM_OPTS0[@]}")
+slurm_opts+=("-J" "ecw_wc-$FCST_YYYYMMDD$FCST_ZZ")
+slurm_opts+=("-o" "$wc_log_file")
+slurm_opts+=("-n" "2")
+slurm_opts+=("$SCRIPT_DIR/run_weatherchart.sh")
+prev_jid=$(sbatch "${slurm_opts[@]}")
 
 # WPS
 mkdir -p "$MODEL_LOG_DIR/wps"

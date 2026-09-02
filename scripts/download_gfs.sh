@@ -20,7 +20,7 @@ END_TS=$((WRF_FCST_DAYS * 24)) # Last timestep to download
 BASE_URL="https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl"
 FILE_PARAM="file=gfs.t${FCST_ZZ}z.pgrb2.0p25.f"
 DIR_PARAM="dir=/gfs.${FCST_YYYYMMDD}/${FCST_ZZ}/atmos"
-STATIC_PARAMS="all_lev=on&all_var=on&subregion=&leftlon=100&rightlon=135&toplat=30&bottomlat=0"
+STATIC_PARAMS="all_lev=on&all_var=on&subregion=&leftlon=100&rightlon=160&toplat=30&bottomlat=0"
 TEST_TS=$(printf "%03d\n" $END_TS)
 TEST_FILE_PARAM="file=gfs.t${FCST_ZZ}z.pgrb2.0p25.f$TEST_TS"
 TEST_PARAMS="var_RH=on&subregion=&leftlon=115&rightlon=120&toplat=10&bottomlat=5"

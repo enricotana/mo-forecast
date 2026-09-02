@@ -65,10 +65,44 @@ plot_vars = {
             "#af0000",
         ],
     },
+    "rain_monthly": {
+        "units": "mm",
+        "levels": np.arange(50, 650, 50),
+        "colors": [
+            "#d6d6d6",  # 0. Light desaturated brown
+            "#bdc9b7",  # 1. Earthy olive-grey green
+            "#c8e6b4",  # 2. Pale green
+            "#a8dba3",  # 3. Light green
+            "#8cd790",  # 4. Fresh light green
+            "#6fc47c",  # 5. Light-medium green
+            "#56b870",  # 6. Mid green
+            "#3da85f",  # 7. Moderate green
+            "#2d9950",  # 8. Leafy green
+            "#1f9d80",  # 9. Green-teal
+            "#1aa88f",  # 10. Soft teal
+            "#16b39c",  # 11. Medium teal
+            "#11beb0",  # 12. Seafoam teal
+            "#0ccac4",  # 13. Aqua teal
+            "#1ebfdc",  # 14. Light blue
+            "#2aa7e5",  # 15. Mid blue
+            "#368eea",  # 16. Moderate blue
+            "#3d75e3",  # 17. Deep blue
+            "#385fd0",  # 18. Dark blue
+            "#2f49aa",  # 19. Very wet/extreme
+        ],
+    },
     "rain_anomaly": {
         "title": "Total Rainfall Anomaly\n(WRF ensemble minus baseline*)",
         "units": "mm",
         "levels": np.arange(-150, 175, 25),
+        "colors": [
+            mp.colors.rgb2hex(mp.cm.get_cmap("BrBG")(i))
+            for i in range(mp.cm.get_cmap("BrBG").N)
+        ],
+    },
+    "rain_difference": {
+        "units": "%",
+        "levels": np.arange(-220, 260, 40),
         "colors": [
             mp.colors.rgb2hex(mp.cm.get_cmap("BrBG")(i))
             for i in range(mp.cm.get_cmap("BrBG").N)
@@ -83,6 +117,14 @@ plot_vars = {
             for i in range(mp.cm.get_cmap("YlOrRd").N)
         ],
     },
+    "temp_monthly": {
+        "units": "°C",
+        "levels": np.arange(16, 32, 2),
+        "colors": [
+            mp.colors.rgb2hex(mp.cm.get_cmap("YlOrRd")(i))
+            for i in range(mp.cm.get_cmap("YlOrRd").N)
+        ],
+    },
     "temp_anomaly": {
         "title": "Average Temperature\n(WRF ensemble minus baseline*)",
         "units": "°C",
@@ -90,6 +132,14 @@ plot_vars = {
         "colors": [
             mp.colors.rgb2hex(mp.cm.get_cmap("coolwarm")(i))
             for i in range(mp.cm.get_cmap("coolwarm").N)
+        ],
+    },
+    "temp_difference": {
+        "units": "°C",
+        "levels": np.arange(-1.5, 1.8, 0.3),
+        "colors": [
+            mp.colors.rgb2hex(mp.cm.get_cmap("bwr")(i))
+            for i in range(mp.cm.get_cmap("bwr").N)
         ],
     },
 }

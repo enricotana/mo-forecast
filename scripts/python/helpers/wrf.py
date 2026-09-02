@@ -251,7 +251,7 @@ def heat_index(t: xr.DataArray, rh: xr.DataArray) -> xr.DataArray:
         _t,
         _rh,
     )
-    return hi.metpy.convert_units(units.degC).metpy.dequantify()
+    return hi.metpy.convert_units(units.degC).metpy.dequantify() + 4.75
 
 
 def wind_power_density(wspd: xr.DataArray) -> xr.DataArray:

@@ -42,6 +42,7 @@ for r in "${!remotes[@]}"; do
     remote_dest="${web_dirs[$r]}/resources/model/img/${img_type}/${FCST_YYYYMMDD}/${FCST_ZZ}"
     ssh "${remotes[$r]}" mkdir -p "${remote_dest}"
     scp "${local_src}"/wrf*"$YY2-$mm2-${dd2}_${HH2}PHT.png" "${remotes[$r]}:${remote_dest}"
+    scp "${local_src}"/gfs*"$YY2-$mm2-${dd2}_${HH2}PHT.png" "${remotes[$r]}:${remote_dest}"
   done
   scp "$SRCDIR/timeseries/img"/wrf*"$YY2-$mm2-${dd2}_${HH2}PHT.png" "${remotes[$r]}:${web_dirs[$r]}/resources/model/img/"
 

@@ -23,8 +23,8 @@ SDATE=$(date -d "${FCST_YY_GSMAP}-${FCST_MM_GSMAP}-${FCST_DD_GSMAP} ${FCST_ZZ_GS
 EDATE=$(date -d "${FCST_YY_GSMAP}-${FCST_MM_GSMAP}-${FCST_DD_GSMAP} ${FCST_ZZ_GSMAP}:00:00 24 hours" +'%Y-%m-%d %H:%M:%S')
 
 # URL Download GSMaP via FTP site
-GAUGE_DIR=ftp://rainmap:Niskur+1404@hokusai.eorc.jaxa.jp/realtime_ver/v7/hourly_G
-NRT_DIR=ftp://rainmap:Niskur+1404@hokusai.eorc.jaxa.jp/realtime_ver/v6/archive
+GAUGE_DIR=ftp://rainmap:Niskur+1404@hokusai.eorc.jaxa.jp/realtime_ver/v8/hourly_G
+NRT_DIR=ftp://rainmap:Niskur+1404@hokusai.eorc.jaxa.jp/realtime_ver/v8/archive
 NOW_DIR=ftp://rainmap:Niskur+1404@hokusai.eorc.jaxa.jp/now/latest
 if [ "$DATA" = 'gauge' ]; then
   FTP_DIR=$GAUGE_DIR

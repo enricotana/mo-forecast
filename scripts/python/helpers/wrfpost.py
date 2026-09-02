@@ -13,6 +13,8 @@ from helpers.wrf import wrf_getvar
 VARS = {
     "rain": {"varname": "prcp"},
     "temp": {"varname": "T2"},
+    "u_10m": {"varname": "U10"},
+    "v_10m": {"varname": "V10"},
     "tsk": {"varname": "TSK"},
     "hi": {"varname": "hi"},
     "hix": {"varname": "hi"},
@@ -214,4 +216,20 @@ def save_as_netcdf(ds: xr.Dataset, out_file: Path):
     ds.lat.attrs["units"] = "degrees_north"
     ds.lat.attrs["standard_name"] = "latitude"
     ds.lat.attrs["long_name"] = "latitude"
+
+    # --- HI metadata ---
+    if "hi" in ds:
+        ds["hi"].attrs.update(
+            {"bias_correction": "additive", "bias_correction_value": 4.75}
+        )
+
+    # --- History append ---
+    old = ds.attrs.get("history", "")
+    new = (
+        "2026-04-30: Bias of +4.75 applied to heat index\n"
+        "2026-04-30: Added 10m u and v winds"
+    )
+
+    ds.attrs["history"] = old + "\n" + new if old else new
+
     ds.to_netcdf(out_file, unlimited_dims=["time"])
